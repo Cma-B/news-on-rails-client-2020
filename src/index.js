@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
+import { StripeProvider } from 'react-stripe-elements'
 
 let apiUrl;
 if (process.env.NODE_ENV === "production") {
@@ -16,7 +17,9 @@ axios.defaults.baseURL = apiUrl;
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <StripeProvider apiKey={process.env.REACT_APP_API_KEY}>
+      <App />
+    </StripeProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
